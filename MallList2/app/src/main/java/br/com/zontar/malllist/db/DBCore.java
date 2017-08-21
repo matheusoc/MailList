@@ -19,13 +19,13 @@ public class DBCore extends SQLiteOpenHelper {
                                   +  "`id_idListaValorada`	INTEGER,"
                                   +  "FOREIGN KEY(`id_idListaValorada`) REFERENCES listaValorada(id)"
                                   +  ");"
-                                  +  "CREATE TABLE listaValorada ("
+                          +  "CREATE TABLE listaValorada ("
                                   +  "`id`	    INTEGER PRIMARY KEY AUTOINCREMENT,"
                                   +  "`produto`	TEXT NOT NULL,"
                                   +  "`valor`	NUMERIC,"
                                   +  "`quant`	INTEGER DEFAULT 1"
                                   +  ");"
-                                  + "COMMIT;";
+                          + "COMMIT;";
 
     public DBCore(Context context) {
         super(context, Constants.DB_NAME, null, Constants.DB_VERSION);
@@ -38,6 +38,7 @@ public class DBCore extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS listas, listaValorada" );
+        onCreate(db);
     }
 }
