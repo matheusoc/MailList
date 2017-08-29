@@ -6,10 +6,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import br.com.zontar.malllist.controller.SQLInsert;
+import br.com.zontar.malllist.controller.SQLQuery;
+import br.com.zontar.malllist.model.List;
 
 /**
  * Created by matheusoliveira on 29/08/2017.
@@ -24,6 +28,8 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
 
     private Dialog mDialog;
 
+    private MainActivity mActivity;
+
     public CreateListDialog () {
 
     }
@@ -31,6 +37,7 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Context context = getActivity().getApplicationContext();
+        mActivity = (MainActivity) getActivity();
         return createDialog(context);
     }
 
@@ -42,6 +49,15 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
         View layout = inflater.inflate(R.layout.create_list_dialog, null);
 
         mNameList = (EditText) layout.findViewById(R.id.nameList);
+        mNameList.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mDialog.getWindow().setSoftInputMode
+                            (WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
+            }
+        });
 
         mConfirmButton = (Button) layout.findViewById(R.id.okButton);
         mCancelButton = (Button) layout.findViewById(R.id.cancelButton);
@@ -59,7 +75,14 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.okButton:
-                insertList();
+                List list = insertList();
+                if(list != null) {
+                    mActivity.refreshData(list);
+                    dismiss();
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Erro ao criar lista", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.cancelButton:
@@ -68,12 +91,24 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
         }
     }
 
-    private void insertList () {
+    private List insertList () {
 
         String nameList = mNameList.getText().toString();
-        SQLInsert sql = new SQLInsert(getActivity().getApplicationContext());
+        if (!nameList.equals("")) {
+            SQLQuery sql = new SQLQuery(getActivity().getApplicationContext());
 
-        sql.insertList(nameList);
+            int id = (int) sql.insertList(nameList);
+            if (id != -1) {
+                List list = new List();
+                list.setIdList(id);
+                list.setNameList(nameList);
+                return list;
+            }
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "Campo de nome não preenchido", Toast.LENGTH_SHORT).show();
+        }
 
+        return null;
     }
 }

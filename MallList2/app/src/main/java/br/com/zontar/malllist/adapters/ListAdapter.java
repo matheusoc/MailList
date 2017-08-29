@@ -1,6 +1,7 @@
 package br.com.zontar.malllist.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import br.com.zontar.malllist.model.List;
  * Created by MatheusdeOliveiraCam on 29/08/2017.
  */
 
-public class ListAdapter extends BaseAdapter {
+public class ListAdapter extends RecyclerView.Adapter {
 
     private ArrayList<List> mList;
     private Context mContext;
@@ -27,34 +28,27 @@ public class ListAdapter extends BaseAdapter {
         this.mList = list;
     }
 
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(mContext)
+                .inflate(R.layout.create_list, parent, false);
+
+        ListHolder holder = new ListHolder(view);
+
+        return holder;
+    }
 
     @Override
-    public int getCount() {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ListHolder listHolder = (ListHolder) holder;
+        String name = mList.get(position).getNameList();
+        listHolder.textView.setText(name);
+    }
+
+    @Override
+    public int getItemCount() {
         return mList.size();
     }
 
-    @Override
-    public Object getItem(int position) {
-        return mList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        List item = mList.get(position);
-
-        LayoutInflater inflater = (LayoutInflater)
-                mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.create_list, null);
-
-        TextView textView = (TextView) layout.findViewById(R.id.list_item_id);
-        textView.setText(item.getNameList());
-
-        return null;
-    }
 }
