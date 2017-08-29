@@ -12,20 +12,19 @@ import br.com.zontar.malllist.Constants;
 
 public class DBCore extends SQLiteOpenHelper {
 
-    private String SQL = "BEGIN TRANSACTION"
-                          +  "CREATE TABLE listas ("
-                                  +  "`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                                  +  "`nome`	TEXT NOT NULL,"
-                                  +  "`id_idListaValorada`	INTEGER,"
-                                  +  "FOREIGN KEY(`id_idListaValorada`) REFERENCES listaValorada(id)"
-                                  +  ");"
-                          +  "CREATE TABLE listaValorada ("
-                                  +  "`id`	    INTEGER PRIMARY KEY AUTOINCREMENT,"
-                                  +  "`produto`	TEXT NOT NULL,"
-                                  +  "`valor`	NUMERIC,"
-                                  +  "`quant`	INTEGER DEFAULT 1"
-                                  +  ");"
-                          + "COMMIT;";
+    private String TABLE_LIST = "CREATE TABLE list ("
+                                + "idList	INTEGER PRIMARY KEY AUTOINCREMENT,"
+	                            + "nameList	INTEGER"
+                                + ");";
+
+    private String TABLE_PRODUCT = "CREATE TABLE product ("
+                                    + "idProduct	INTEGER PRIMARY KEY AUTOINCREMENT,"
+	                                + "nameProduct	TEXT NOT NULL,"
+                                    + "priceProduct	REAL DEFAULT 0,"
+                                    + "idList_Product	INTEGER NOT NULL,"
+                                    + "quantProduct	INTEGER DEFAULT 1,"
+                                    + "FOREIGN KEY(idList_Product) REFERENCES list(idList)"
+                                    + ");";
 
     public DBCore(Context context) {
         super(context, Constants.DB_NAME, null, Constants.DB_VERSION);
@@ -33,12 +32,13 @@ public class DBCore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL);
+        db.execSQL(TABLE_LIST);
+        db.execSQL(TABLE_PRODUCT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS listas, listaValorada" );
+        db.execSQL("DROP TABLE IF EXISTS list, product" );
         onCreate(db);
     }
 }

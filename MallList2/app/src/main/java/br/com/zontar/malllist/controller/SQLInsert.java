@@ -13,26 +13,32 @@ import br.com.zontar.malllist.db.DBCore;
 
 public class SQLInsert {
 
+    private static SQLInsert mSqlInsert;
+
     private SQLiteDatabase mDb;
 
-    private Context mContext;
-
-    public SQLInsert(Context context) {
-        this.mContext = context;
+    public SQLInsert (Context context) {
         DBCore auxDB = new DBCore(context);
 
         mDb = auxDB.getWritableDatabase();
     }
 
-    public void insertList() {
-        ContentValues values = new ContentValues();
-        values.put("produto", "maçã");
-        values.put("valor", 12.80);
-        values.put("quant", 5);
+    public static SQLInsert getInstance (Context context) {
+        if (mSqlInsert == null) {
+            mSqlInsert = new SQLInsert(context);
+        }
+        return mSqlInsert;
+    }
 
-        mDb.insert("listaValorada", null, values);
+    public void insertList () {
+        ContentValues values = new ContentValues();
+        values.put("nameProduct", "Abacaxi");
+        values.put("idList_Product", 1);
+
+        mDb.insert("product", null, values);
 
         Log.d("LOG", "Sucesso");
+
     }
 
 

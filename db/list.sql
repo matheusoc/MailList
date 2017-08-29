@@ -1,14 +1,14 @@
 BEGIN TRANSACTION;
-CREATE TABLE "listas" (
-	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	`nome`	TEXT NOT NULL,
-	`id_idListaValorada`	INTEGER,
-	FOREIGN KEY(`id_idListaValorada`) REFERENCES listaValorada(id)
+CREATE TABLE "product" (
+	`idProduct`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`nameProduct`	TEXT NOT NULL,
+	`priceProduct`	REAL DEFAULT 0,
+	`idList_Product`	INTEGER NOT NULL,
+	`quantProduct`	INTEGER DEFAULT 1,
+	FOREIGN KEY(`idList_Product`) REFERENCES `list`(`idList`) 
 );
-CREATE TABLE "listaValorada" (
-	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
-	`produto`	TEXT NOT NULL,
-	`valor`	NUMERIC,
-	`quant`	INTEGER DEFAULT 1
+CREATE TABLE "list" (
+	`idList`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`nameList`	INTEGER
 );
 COMMIT;
