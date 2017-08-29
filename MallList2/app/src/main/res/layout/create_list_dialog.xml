@@ -7,7 +7,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/nameList"
         android:hint="Nome da Lista"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,12 +19,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/cancelButton"
             android:text="cancel"
             style="?android:borderlessButtonStyle"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/okButton"
             android:text="OK"
             style="?android:borderlessButtonStyle"/>
 

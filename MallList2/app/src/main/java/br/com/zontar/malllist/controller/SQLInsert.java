@@ -30,12 +30,11 @@ public class SQLInsert {
         return mSqlInsert;
     }
 
-    public void insertList () {
+    public void insertList (String listName) {
         ContentValues values = new ContentValues();
-        values.put("nameProduct", "Abacaxi");
-        values.put("idList_Product", 1);
+        values.put("nameList", listName);
 
-        mDb.insert("product", null, values);
+        mDb.insert("list", null, values);
 
         Log.d("LOG", "Sucesso");
 
