@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="br.com.zontar.malllist.MainActivity"
-    android:fitsSystemWindows="true"
-    android:padding="20dp">
+    android:fitsSystemWindows="true">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list_names_id" />
+        android:id="@+id/list_names_id"
+        android:padding="20dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_action_name"
+        android:layout_margin="20dp"
         app:paddingEnd="16dp"
         app:layout_behavior="br.com.zontar.malllist.animations.FabBehavior"/>
 

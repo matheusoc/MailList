@@ -4,6 +4,7 @@ import android.app.DialogFragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFab.setOnClickListener(this);
 
         mListItems = (RecyclerView) findViewById(R.id.list_names_id);
+        mListItems.setHasFixedSize(true);
+        mListItems.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         mList = mSQlQuery.getList();
 
