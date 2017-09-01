@@ -19,7 +19,8 @@ public class SQLQuery {
 
     private static SQLQuery mSqlQuery;
 
-    private String SQL_SELECT_LISTS = "SELECT * FROM list";
+    private String SQL_SELECT_LISTS = "SELECT * FROM list;";
+    private String SQL_DELETE_LIST = "DELETE FROM list where idList = ?;";
 
     private SQLiteDatabase mDb;
 
@@ -42,8 +43,6 @@ public class SQLQuery {
 
         long id = mDb.insert("list", null, values);
 
-        Log.d("LOG", "Sucesso");
-
         return id;
     }
 
@@ -61,6 +60,13 @@ public class SQLQuery {
         }
 
         return  lists;
+    }
+
+    public void deleteList (List list) {
+
+        String[] idList = {String.valueOf(list.getIdList())};
+        mDb.execSQL(SQL_DELETE_LIST, idList);
+
     }
 
 

@@ -46,13 +46,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void refreshData (List list) {
+    public void refreshDataAdd (List list) {
         mList.add(list);
+        refreshData();
+    }
+
+    public void refreshData () {
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick (View v) {
 
         switch (v.getId()) {
             case R.id.fab:

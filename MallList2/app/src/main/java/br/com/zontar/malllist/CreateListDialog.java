@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -77,7 +76,7 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
             case R.id.okButton:
                 List list = insertList();
                 if(list != null) {
-                    mActivity.refreshData(list);
+                    mActivity.refreshDataAdd(list);
                     dismiss();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(),
