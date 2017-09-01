@@ -1,4 +1,4 @@
-package br.com.zontar.malllist;
+package br.com.zontar.malllist.view.dialogs;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -11,14 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.com.zontar.malllist.Constants;
+import br.com.zontar.malllist.R;
 import br.com.zontar.malllist.controller.SQLQuery;
 import br.com.zontar.malllist.model.List;
+import br.com.zontar.malllist.view.MainActivity;
 
 /**
- * Created by matheusoliveira on 29/08/2017.
+ * Created by matheusoliveira on 01/09/2017.
  */
 
-public class CreateListDialog extends DialogFragment implements View.OnClickListener {
+public class EditListDialog extends DialogFragment implements View.OnClickListener{
 
     private Button mConfirmButton;
     private Button mCancelButton;
@@ -29,18 +32,25 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
 
     private MainActivity mActivity;
 
-    public CreateListDialog () {
-
-    }
+    private List mList;
+    private int mPosition;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Context context = getActivity().getApplicationContext();
         mActivity = (MainActivity) getActivity();
+
+        String nameList = getArguments().getString(Constants.LIST_NAME);
+        int idList = getArguments().getInt(Constants.LIST_ID);
+        mPosition = getArguments().getInt(Constants.POSITION);
+
+        mList = new List(idList, nameList);
+
         return createDialog(context);
     }
 
-    public Dialog createDialog(final Context context) {
+    public Dialog createDialog (Context context) {
+
         mDialog = new Dialog(getActivity());
 
         LayoutInflater inflater = (LayoutInflater)
@@ -70,13 +80,29 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
         return mDialog;
     }
 
+    private List updateList () {
+        String newNameList = mNameList.getText().toString();
+
+        if (!newNameList.equals("")) {
+            SQLQuery query = new SQLQuery(getActivity().getApplicationContext());
+            query.updateList(mList, newNameList);
+            mList.setNameList(newNameList);
+            return mList;
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "Campo de nome não preenchido", Toast.LENGTH_SHORT).show();
+        }
+
+        return null;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.okButton:
-                List list = insertList();
+                List list = updateList();
                 if(list != null) {
-                    mActivity.refreshDataAdd(list);
+                    mActivity.refreshDataUpdate(list, mPosition);
                     dismiss();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(),
@@ -88,26 +114,5 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
                 mDialog.cancel();
                 break;
         }
-    }
-
-    private List insertList () {
-
-        String nameList = mNameList.getText().toString();
-        if (!nameList.equals("")) {
-            SQLQuery sql = new SQLQuery(getActivity().getApplicationContext());
-
-            int id = (int) sql.insertList(nameList);
-            if (id != -1) {
-                List list = new List();
-                list.setIdList(id);
-                list.setNameList(nameList);
-                return list;
-            }
-        } else {
-            Toast.makeText(getActivity().getApplicationContext(),
-                    "Campo de nome não preenchido", Toast.LENGTH_SHORT).show();
-        }
-
-        return null;
     }
 }

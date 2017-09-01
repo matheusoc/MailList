@@ -9,6 +9,13 @@ public class List {
     private int idList;
     private String nameList;
 
+    public List() {
+    }
+
+    public List(int idList, String nameList) {
+        this.idList = idList;
+        this.nameList = nameList;
+    }
 
     public int getIdList() {
         return idList;

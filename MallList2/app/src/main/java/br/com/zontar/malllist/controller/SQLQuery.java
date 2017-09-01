@@ -21,6 +21,7 @@ public class SQLQuery {
 
     private String SQL_SELECT_LISTS = "SELECT * FROM list;";
     private String SQL_DELETE_LIST = "DELETE FROM list where idList = ?;";
+    private String SQL_UPDATE_LIST = "UPDATE list SET nameList = ? WHERE idList = ?;";
 
     private SQLiteDatabase mDb;
 
@@ -66,6 +67,13 @@ public class SQLQuery {
 
         String[] idList = {String.valueOf(list.getIdList())};
         mDb.execSQL(SQL_DELETE_LIST, idList);
+
+    }
+
+    public void updateList (List list, String newName) {
+
+        String[] values = {newName, String.valueOf(list.getIdList())};
+        mDb.execSQL(SQL_UPDATE_LIST, values);
 
     }
 

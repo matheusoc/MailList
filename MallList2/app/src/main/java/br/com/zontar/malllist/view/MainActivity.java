@@ -1,4 +1,4 @@
-package br.com.zontar.malllist;
+package br.com.zontar.malllist.view;
 
 import android.app.DialogFragment;
 import android.support.design.widget.FloatingActionButton;
@@ -10,9 +10,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import br.com.zontar.malllist.R;
 import br.com.zontar.malllist.adapters.ListAdapter;
 import br.com.zontar.malllist.controller.SQLQuery;
 import br.com.zontar.malllist.model.List;
+import br.com.zontar.malllist.view.dialogs.CreateListDialog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,6 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void refreshDataAdd (List list) {
+        mList.add(list);
+        refreshData();
+    }
+
+    public void refreshDataUpdate (List list, int position) {
+        mList.remove(position);
         mList.add(list);
         refreshData();
     }

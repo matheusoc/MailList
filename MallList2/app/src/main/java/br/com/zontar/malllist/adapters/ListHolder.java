@@ -15,11 +15,13 @@ public class ListHolder extends RecyclerView.ViewHolder {
 
     public TextView textView;
     public ImageButton deleteButton;
+    public ImageButton editButton;
 
     public ListHolder(View itemView) {
         super(itemView);
 
         textView = (TextView) itemView.findViewById(R.id.list_item_id);
+        editButton = (ImageButton) itemView.findViewById(R.id.edit_list_button);
         deleteButton = (ImageButton) itemView.findViewById(R.id.delete_list_button);
     }
 }
