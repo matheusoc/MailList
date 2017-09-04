@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import br.com.zontar.malllist.db.DBCore;
 import br.com.zontar.malllist.model.List;
+import br.com.zontar.malllist.model.Product;
 
 /**
  * Created by matheusoliveira on 21/08/2017.
@@ -22,6 +23,7 @@ public class SQLQuery {
     private String SQL_SELECT_LISTS = "SELECT * FROM list;";
     private String SQL_DELETE_LIST = "DELETE FROM list where idList = ?;";
     private String SQL_UPDATE_LIST = "UPDATE list SET nameList = ? WHERE idList = ?;";
+    private String SQL_SELECT_PRODUCTS_LIST = "SELECT * FROM product WHERE idList_Product = ?;";
 
     private SQLiteDatabase mDb;
 
@@ -75,6 +77,40 @@ public class SQLQuery {
         String[] values = {newName, String.valueOf(list.getIdList())};
         mDb.execSQL(SQL_UPDATE_LIST, values);
 
+    }
+
+    public long addItemToList (int idList, String itemName, String qnt, String price) {
+
+        ContentValues values = new ContentValues();
+        values.put("idList_Product", idList);
+        values.put("nameProduct", itemName);
+        values.put("quantProduct", qnt);
+        values.put("priceProduct", price);
+
+        long id = mDb.insert("product", null, values);
+
+        return id;
+
+    }
+
+    public ArrayList<Product> getProducts (int idList) {
+        String[] args = {String.valueOf(idList)};
+        Cursor cursor = mDb.rawQuery(SQL_SELECT_PRODUCTS_LIST, args);
+
+        ArrayList<Product> products = new ArrayList<>();
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            do {
+                Product product = new Product();
+                product.setIdProduct(cursor.getInt(0));
+                product.setProductName(cursor.getString(1));
+                product.setProductQnt(cursor.getInt(4));
+                product.setProductPrice(cursor.getFloat(2));
+                products.add(product);
+            } while (cursor.moveToNext());
+        }
+        return products;
     }
 
 

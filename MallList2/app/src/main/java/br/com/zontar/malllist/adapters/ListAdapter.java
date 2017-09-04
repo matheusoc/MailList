@@ -83,7 +83,9 @@ public class ListAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
+
                 bundle.putInt(Constants.LIST_ID, mList.get(position).getIdList());
+                bundle.putString(Constants.LIST_NAME, mList.get(position).getNameList());
 
                 Intent intent = new Intent(mContext, ListItemsActivity.class);
                 intent.putExtras(bundle);

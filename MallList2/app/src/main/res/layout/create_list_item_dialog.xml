@@ -7,10 +7,38 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nameList"
+        android:id="@+id/name_item"
         android:textColorHint="#b7b3b3"
         android:textColor="#8c8c8c"
         android:hint="Nome da Lista"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:id="@+id/qnt_item"
+            android:hint="@string/hint_quant"
+            android:inputType="number"
+            android:textColorHint="#b7b3b3"
+            android:textColor="#8c8c8c"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_value"
+            android:id="@+id/price_item"
+            android:inputType="numberDecimal"
+            android:textColorHint="#b7b3b3"
+            android:textColor="#8c8c8c"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

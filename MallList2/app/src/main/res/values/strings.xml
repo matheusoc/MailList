@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mall List</string>
+    <string name="nome_da_lista">Nome da lista:</string>
+
+    <string name="hint_quant">Quantidade</string>
+    <string name="hint_value">Preço</string>
 </resources>
