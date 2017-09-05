@@ -23,7 +23,13 @@ public class SQLQuery {
     private String SQL_SELECT_LISTS = "SELECT * FROM list;";
     private String SQL_DELETE_LIST = "DELETE FROM list where idList = ?;";
     private String SQL_UPDATE_LIST = "UPDATE list SET nameList = ? WHERE idList = ?;";
+    private String SQL_DELETE_LIST_SUBSEQUENT = "DELETE FROM product where idList_Product = ?;";
+
     private String SQL_SELECT_PRODUCTS_LIST = "SELECT * FROM product WHERE idList_Product = ?;";
+    private String SQL_DELETE_PRODUCT = "DELETE FROM product where idProduct = ?;";
+    private String SQL_UPDATE_PRODUCT = "UPDATE product SET nameProduct = ?, priceProduct = ?, " +
+            "quantProduct = ? WHERE idProduct = ?;";
+
 
     private SQLiteDatabase mDb;
 
@@ -69,6 +75,7 @@ public class SQLQuery {
 
         String[] idList = {String.valueOf(list.getIdList())};
         mDb.execSQL(SQL_DELETE_LIST, idList);
+        mDb.execSQL(SQL_DELETE_LIST_SUBSEQUENT, idList);
 
     }
 
@@ -111,6 +118,21 @@ public class SQLQuery {
             } while (cursor.moveToNext());
         }
         return products;
+    }
+
+    public void deleteProduct (int id) {
+
+        String[] idList = {String.valueOf(id)};
+        mDb.execSQL(SQL_DELETE_PRODUCT, idList);
+
+    }
+
+    public void updateProduct (int id, String name, int qnt, float value) {
+
+        String[] values = {name, String.valueOf(qnt), String.valueOf(value), String.valueOf(id)};
+
+        mDb.execSQL(SQL_UPDATE_PRODUCT, values);
+
     }
 
 

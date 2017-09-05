@@ -13,5 +13,10 @@ public abstract class Constants {
     public static final String LIST_ID = "idList";
     public static final String POSITION = "position";
 
+    public static final String PRODUCT_ID = "idProduct";
+    public static final String PRODUCT_NAME = "nameProduct";
+    public static final String PRODUCT_QNT = "qntProduct";
+    public static final String PRODUCT_VALUE = "valueProduct";
+
 
 }

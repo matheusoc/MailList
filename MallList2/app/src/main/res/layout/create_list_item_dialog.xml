@@ -10,7 +10,9 @@
         android:id="@+id/name_item"
         android:textColorHint="#b7b3b3"
         android:textColor="#8c8c8c"
-        android:hint="Nome da Lista"/>
+        android:maxLines="1"
+        android:inputType="text"
+        android:hint="Nome do produto"/>
 
     <LinearLayout
         android:layout_width="match_parent"

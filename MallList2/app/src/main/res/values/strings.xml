@@ -4,4 +4,6 @@
 
     <string name="hint_quant">Quantidade</string>
     <string name="hint_value">Preço</string>
+
+    <string name="total_price">Total: </string>
 </resources>
