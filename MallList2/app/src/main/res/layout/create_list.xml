@@ -34,5 +34,6 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/list_item_id"
+        android:backgroundTint="@color/colorAccentDark"
         android:background="#000000" />
 </RelativeLayout>

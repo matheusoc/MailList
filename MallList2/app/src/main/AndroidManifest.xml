@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".view.ListItemsActivity"
+            android:label="@string/products"
             android:screenOrientation="portrait"/>
     </application>
 
