@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,6 +42,9 @@ public class ListItemsActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_list_item_name);
 
         mBundle = getIntent().getExtras();
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initComponents();
 
@@ -94,6 +98,16 @@ public class ListItemsActivity extends AppCompatActivity implements View.OnClick
         mTotalPriceText.setText(formattedPrice);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -105,4 +119,5 @@ public class ListItemsActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
     }
+
 }

@@ -3,6 +3,8 @@ package br.com.zontar.malllist.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -27,6 +29,9 @@ public class ShowItemActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_item);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mBundle = getIntent().getExtras();
 
         mProdutoName = (TextView) findViewById(R.id.nome);
@@ -44,5 +49,15 @@ public class ShowItemActivity extends AppCompatActivity{
         mProdutoName.setText(nome);
         mProdutoQnt.setText(qnt);
         mProdutoPrice.setText(formattedValue);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
