@@ -21,6 +21,10 @@
         <activity android:name=".view.ListItemsActivity"
             android:label="@string/products"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".view.ShowItemActivity"
+            android:label="Info"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

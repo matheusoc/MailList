@@ -10,6 +10,7 @@
         android:id="@+id/nameList"
         android:textColorHint="#b7b3b3"
         android:textColor="#8c8c8c"
+        android:inputType="textCapSentences"
         android:hint="Nome da Lista"/>
 
     <LinearLayout

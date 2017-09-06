@@ -11,7 +11,7 @@
         android:textColorHint="#b7b3b3"
         android:textColor="#8c8c8c"
         android:maxLines="1"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         android:hint="Nome do produto"/>
 
     <LinearLayout

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nome_produto"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/produto"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/produto"
+        android:layout_alignStart="@+id/produto"
+        android:textSize="20dp"
+        android:id="@+id/nome"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/qnt_produto"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/qnt"
+        android:layout_below="@+id/nome"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qnt"
+        android:layout_alignStart="@+id/qnt"
+        android:textSize="20dp"
+        android:id="@+id/qnt_produto"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/preco_produto"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/price"
+        android:layout_alignBottom="@+id/qnt"
+        android:layout_toEndOf="@+id/qnt"
+        android:layout_marginStart="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:layout_alignStart="@+id/price"
+        android:textSize="20dp"
+        android:id="@+id/price_produto"/>
+</RelativeLayout>

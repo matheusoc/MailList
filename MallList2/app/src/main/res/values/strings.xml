@@ -7,4 +7,7 @@
     <string name="hint_value">Preço</string>
 
     <string name="total_price">Total: </string>
+    <string name="nome_produto">Nome</string>
+    <string name="qnt_produto">Quantidade</string>
+    <string name="preco_produto">Preço</string>
 </resources>

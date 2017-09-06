@@ -77,6 +77,12 @@ public class EditListDialog extends DialogFragment implements View.OnClickListen
 
         mDialog.setContentView(layout);
 
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(mDialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+
+        mDialog.getWindow().setAttributes(layoutParams);
+
         return mDialog;
     }
 

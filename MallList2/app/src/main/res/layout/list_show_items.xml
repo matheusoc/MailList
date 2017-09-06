@@ -12,12 +12,14 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:id="@+id/list_item_name"
         android:layout_alignTop="@+id/edit_list_button"
         android:layout_toEndOf="@+id/qnt_items"
+        android:layout_toStartOf="@+id/list_item_value"
+        style="@style/autoscroll"
         android:layout_marginLeft="14dp"/>
 
     <TextView

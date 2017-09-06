@@ -2,6 +2,7 @@ package br.com.zontar.malllist.adapters;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import br.com.zontar.malllist.R;
 import br.com.zontar.malllist.controller.SQLQuery;
 import br.com.zontar.malllist.model.Product;
 import br.com.zontar.malllist.view.ListItemsActivity;
+import br.com.zontar.malllist.view.ShowItemActivity;
 import br.com.zontar.malllist.view.dialogs.EditProductDialog;
 
 /**
@@ -80,6 +82,20 @@ public class ProductListAdapter extends RecyclerView.Adapter{
                 bundle.putInt(Constants.POSITION, productHolder.getAdapterPosition());
                 editProduct.setArguments(bundle);
                 editProduct.show(mActivity.getFragmentManager(), "edit");
+            }
+        });
+
+        productHolder.mProductName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.PRODUCT_NAME, product.getProductName());
+                bundle.putString(Constants.PRODUCT_QNT, String.valueOf(product.getProductQnt()));
+                bundle.putFloat(Constants.PRODUCT_VALUE, product.getProductPrice());
+
+                Intent intent = new Intent(mContext, ShowItemActivity.class);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
             }
         });
 

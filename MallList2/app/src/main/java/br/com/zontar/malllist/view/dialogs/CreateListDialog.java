@@ -66,8 +66,13 @@ public class CreateListDialog extends DialogFragment implements View.OnClickList
         mConfirmButton.setOnClickListener(this);
         mCancelButton.setOnClickListener(this);
 
-
         mDialog.setContentView(layout);
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(mDialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+
+        mDialog.getWindow().setAttributes(layoutParams);
 
         return mDialog;
     }
