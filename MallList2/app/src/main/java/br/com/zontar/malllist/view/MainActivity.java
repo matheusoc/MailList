@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void refreshData () {
         mAdapter.notifyDataSetChanged();
+        if (!mFab.isShown()) {
+            mFab.show();
+        }
     }
 
     @Override

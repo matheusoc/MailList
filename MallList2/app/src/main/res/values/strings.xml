@@ -10,4 +10,6 @@
     <string name="nome_produto">Nome</string>
     <string name="qnt_produto">Quantidade</string>
     <string name="preco_produto">Preço</string>
+
+    <string name="item_valor">Valor:</string>
 </resources>

@@ -53,7 +53,7 @@ public class ProductListAdapter extends RecyclerView.Adapter{
         final ProductListHolder productHolder = (ProductListHolder) holder;
         final Product product = mList.get(position);
 
-        productHolder.mProductName.setText(product.getProductName());
+        productHolder.mProductText.setText(product.getProductName());
         String formattedValue = NumberFormat.getCurrencyInstance().
                 format(product.getProductPrice());
         productHolder.mQnt.setText(String.valueOf(product.getProductQnt()));
@@ -85,7 +85,7 @@ public class ProductListAdapter extends RecyclerView.Adapter{
             }
         });
 
-        productHolder.mProductName.setOnClickListener(new View.OnClickListener() {
+        productHolder.mProductLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
