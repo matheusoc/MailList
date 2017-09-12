@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ArrayList<List> mList;
     private ListAdapter mAdapter;
+
+    private LinearLayout mLayoutEmpty;
+    private ImageButton mAddListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mListItems.setAdapter(mAdapter);
 
+        mLayoutEmpty = (LinearLayout) findViewById(R.id.list_empty_layout);
+        mAddListButton = (ImageButton) findViewById(R.id.add_list_image_button);
+        mAddListButton.setOnClickListener(this);
+
+        checkListSize();
+
+    }
+
+    private void checkListSize () {
+        if (mList.size() == 0) {
+            mListItems.setVisibility(View.GONE);
+            mFab.setVisibility(View.GONE);
+            mLayoutEmpty.setVisibility(View.VISIBLE);
+        } else {
+            mListItems.setVisibility(View.VISIBLE);
+            mFab.setVisibility(View.VISIBLE);
+            mLayoutEmpty.setVisibility(View.GONE);
+        }
     }
 
     public void refreshDataAdd (List list) {
@@ -64,12 +87,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!mFab.isShown()) {
             mFab.show();
         }
+        checkListSize();
     }
 
     @Override
     public void onClick (View v) {
 
         switch (v.getId()) {
+            case R.id.add_list_image_button:
             case R.id.fab:
                 DialogFragment dialogFragment = new CreateListDialog();
                 dialogFragment.show(getFragmentManager(), "List");

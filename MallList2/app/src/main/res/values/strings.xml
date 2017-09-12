@@ -12,4 +12,6 @@
     <string name="preco_produto">Preço</string>
 
     <string name="item_valor">Valor:</string>
+
+    <string name="add_lista">Adicionar nova lista</string>
 </resources>
