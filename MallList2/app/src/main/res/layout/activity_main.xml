@@ -12,30 +12,45 @@
         android:id="@+id/list_empty_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/add_list_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@drawable/ic_add_circle_outline"
-            android:layout_gravity="center"/>
+            android:cropToPadding="false"
+            android:elevation="0dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/add_lista"/>
+            android:text="@string/add_lista" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_names_id"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:visibility="gone" />
+        android:layout_height="match_parent">
 
+        <Spinner
+            android:id="@+id/month_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_names_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:visibility="visible"
+            android:layout_below="@id/month_selector"/>
+
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -43,8 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
-        android:visibility="gone"
         android:src="@drawable/ic_action_name"
+        android:visibility="visible"
         app:layout_behavior="br.com.zontar.malllist.animations.FabBehavior"
         app:paddingEnd="16dp" />
 
